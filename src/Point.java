@@ -1,11 +1,10 @@
 import java.util.*;
 
 public class Point {
-    private static List<String> firstGroupPoints = new ArrayList<>();
-    private static List<String> secondGroupPoints = new ArrayList<>();
-    private static List<String> thirdGroupPoints = new ArrayList<>();
+    private static final List<String> firstGroupPoints = new ArrayList<>();
+    private static final List<String> secondGroupPoints = new ArrayList<>();
+    private static final List<String> thirdGroupPoints = new ArrayList<>();
     private static int countOfPointWithoutGroup;
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -33,35 +32,33 @@ public class Point {
                 removeGroups(operation);
             }
         }
-
-
     }
 
     public static void addPointToList(String[] operation) {
         for (int i = 1; i < operation.length; i += 2) {
             boolean hasGroup = false;
 
-                try {
-                    if (Integer.parseInt(operation[i+1]) - Integer.parseInt(operation[i]) >= 0) {
-                        firstGroupPoints.add("[" + operation[i] + ";" + operation[i+1] + "]");
-                        hasGroup = true;
-                    }
-                    if (Integer.parseInt(operation[i+1]) - Math.pow(Integer.parseInt(operation[i]), 2) >= 0) {
-                        secondGroupPoints.add("[" + operation[i] + ";" + operation[i+1] + "]");
-                        hasGroup = true;
-                    }
-                    if (Integer.parseInt(operation[i+1]) - Math.pow(Integer.parseInt(operation[i]), 3) >= 0) {
-                        thirdGroupPoints.add("[" + operation[i] + ";" + operation[i+1] + "]");
-                        hasGroup = true;
-                    }
-                    if (!hasGroup) {
-                        countOfPointWithoutGroup++;
-                    }
-                } catch (NumberFormatException e1) {
-                    System.out.println("Bad numbers");
-                } catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Not point");
+            try {
+                if (Integer.parseInt(operation[i + 1]) - Integer.parseInt(operation[i]) >= 0) {
+                    firstGroupPoints.add("[" + operation[i] + ";" + operation[i + 1] + "]");
+                    hasGroup = true;
                 }
+                if (Integer.parseInt(operation[i + 1]) - Math.pow(Integer.parseInt(operation[i]), 2) >= 0) {
+                    secondGroupPoints.add("[" + operation[i] + ";" + operation[i + 1] + "]");
+                    hasGroup = true;
+                }
+                if (Integer.parseInt(operation[i + 1]) - Math.pow(Integer.parseInt(operation[i]), 3) >= 0) {
+                    thirdGroupPoints.add("[" + operation[i] + ";" + operation[i + 1] + "]");
+                    hasGroup = true;
+                }
+                if (!hasGroup) {
+                    countOfPointWithoutGroup++;
+                }
+            } catch (NumberFormatException e1) {
+                System.out.println("Bad numbers");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Not point");
+            }
 
         }
     }
@@ -83,8 +80,6 @@ public class Point {
     }
 
     public static void printPointByGroups() {
-
-
         if (firstGroupPoints.size() == 0) {
             System.out.print("No points in first group");
         } else {
@@ -109,7 +104,6 @@ public class Point {
 
         System.out.println();
         System.out.println("Count of points without group = " + countOfPointWithoutGroup);
-
     }
 
     public static void removeGroups(String[] operation) {
@@ -130,6 +124,7 @@ public class Point {
         firstGroupPoints.clear();
         secondGroupPoints.clear();
         thirdGroupPoints.clear();
+        countOfPointWithoutGroup = 0;
     }
 
     public static void help() {
@@ -145,5 +140,4 @@ public class Point {
                 "clear              - очистить память\n" +
                 "help               - вывод справки по командам");
     }
-
 }
