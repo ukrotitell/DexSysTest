@@ -32,6 +32,7 @@ public class Point {
                 removeGroups(operation);
             }
         }
+        scanner.close();
     }
 
     public static void addPointToList(String[] operation) {
@@ -138,6 +139,8 @@ public class Point {
                 "remove <group_num> - удалить из памяти все точки, входящие в группу(ы) <group_num>\n" +
                 "                     прим. remove 2 3\n" +
                 "clear              - очистить память\n" +
-                "help               - вывод справки по командам");
+                "help               - вывод справки по командам\n" +
+                "exit               - завершить программу")
+        ;
     }
 }
